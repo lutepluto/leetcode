@@ -1,18 +1,15 @@
 package problem21
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "github.com/lutepluto/leetcode/common"
 
-func mergeTwoLists(l1, l2 *ListNode) *ListNode {
+func mergeTwoLists(l1, l2 *common.ListNode) *common.ListNode {
 	if l1 == nil {
 		return l2
 	}
 	if l2 == nil {
 		return l1
 	}
-	var head, tmp *ListNode
+	var head, tmp *common.ListNode
 	if l1.Val > l2.Val {
 		head = l2
 		l2 = l2.Next
@@ -42,7 +39,7 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
 	return head
 }
 
-func mergeTwoListsRecursively(l1, l2 *ListNode) *ListNode {
+func mergeTwoListsRecursively(l1, l2 *common.ListNode) *common.ListNode {
 	if l1 == nil {
 		return l2
 	}
