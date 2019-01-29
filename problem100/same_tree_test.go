@@ -8,13 +8,7 @@ import (
 )
 
 func TestIsSame(t *testing.T) {
-	p := &common.TreeNode{Val: 1}
-	p.Left = &common.TreeNode{Val: 2}
-	p.Right = &common.TreeNode{Val: 3}
-
-	q := &common.TreeNode{Val: 1}
-	q.Left = &common.TreeNode{Val: 2}
-	q.Right = &common.TreeNode{Val: 3}
-
-	fmt.Printf("%v\n", isSameTree(q, q))
+	p := common.BinaryTreeFromLevelTraversal(1, 2, 3)
+	q := common.BinaryTreeFromLevelTraversal(1, 2, 3)
+	fmt.Printf("%v\n", isSameTree(p, q))
 }
