@@ -1,6 +1,9 @@
 package common
 
-import "math"
+import (
+	"math"
+	"strconv"
+)
 
 // TreeNode is a node for binary tree
 type TreeNode struct {
@@ -26,6 +29,41 @@ func fromLevelTraversal(values []int, idx, length int) *TreeNode {
 	node.Left = fromLevelTraversal(values, 2*idx+1, length)
 	node.Right = fromLevelTraversal(values, 2*idx+2, length)
 	return node
+}
+
+// LevelOrderTraversal traverse binary tree using level order
+func LevelOrderTraversal(root *TreeNode) []string {
+	values := make([]string, 0)
+	if root == nil {
+		return values
+	}
+	queue := make([]*TreeNode, 0)
+	queue = append(queue, root)
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+
+		if node.Left != nil || node.Right != nil {
+			if node.Left == nil {
+				queue = append(queue, &TreeNode{Val: math.MinInt32})
+			} else {
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right == nil {
+				queue = append(queue, &TreeNode{Val: math.MinInt32})
+			} else {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		if node.Val > math.MinInt32 {
+			values = append(values, strconv.Itoa(node.Val))
+		} else {
+			values = append(values, "null")
+		}
+	}
+	return values
 }
 
 // PreOrderTraversal traverse binary tree using pre-order
