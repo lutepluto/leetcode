@@ -19,11 +19,9 @@ func doPathSum(root *common.TreeNode, sum int, path []int, paths [][]int) [][]in
 		}
 		pathCopy[len(path)] = root.Val
 		paths = append(paths, pathCopy)
-
 	} else {
 		paths = doPathSum(root.Left, sum-root.Val, append(path, root.Val), paths)
 		paths = doPathSum(root.Right, sum-root.Val, append(path, root.Val), paths)
 	}
-
 	return paths
 }
